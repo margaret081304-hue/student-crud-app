@@ -1,4 +1,6 @@
+const searchInput = document.getElementById("searchInput");
 const API_URL = "/api/students";
+
 
 const studentForm = document.getElementById("studentForm");
 const studentMongoId = document.getElementById("studentMongoId");
@@ -322,3 +324,22 @@ function showMessage(
 
 // LOAD DATA
 loadStudents();
+// SEARCH STUDENTS
+searchInput.addEventListener("input", function () {
+
+    const searchText = searchInput.value.toLowerCase();
+
+    const rows = studentTableBody.querySelectorAll("tr");
+
+    rows.forEach(row => {
+
+        const rowText = row.textContent.toLowerCase();
+
+        if (rowText.includes(searchText)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+});
